@@ -179,14 +179,21 @@ def CalcSearchIndexFromTime(data, keyTime):
             return i
         
 # name name.pickle = reservedName 
-def SaveDicDataFromFileNPZ(name,data):
-    np.savez(name, data=data)
+def SaveDicDataFromFileNPZ(PATH,name,data):
+    if not ( os.path.exists(PATH) ): os.makedirs(PATH)
+
+    np.savez(PATH+name, data=data)
 
 def LoadDicDataFromFileNPZ(loadName):
     """
     loadName ロードするファイル名
     """
-    arrays = np.load(loadName+'.npz')
+    root, ext = os.path.splitext(loadName)
+    if len(ext) == 0:
+        arrays = np.load(loadName+'.npz')
+    else:
+        arrays = np.load(loadName)
+
     output = arrays['data'][()]
     return output
 
