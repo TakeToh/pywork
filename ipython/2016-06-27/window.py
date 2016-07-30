@@ -7,16 +7,22 @@
        The data return by this method is the needed window
 """
 
+<<<<<<< HEAD
 import numpy as np
 
 
+=======
+>>>>>>> origin/master
 class Window:
     """Input dictionary
        Ouput Windows
     """         
     def __init__(self):                  
         self.seed ={}
+<<<<<<< HEAD
         self.window=np.array([])
+=======
+>>>>>>> origin/master
     
     def SetData(self, RegistDataName, RegistData):
         if RegistDataName in self.seed:
@@ -49,12 +55,17 @@ class Window:
         # first array
         start = offset
         goal = start+windowWidth
+<<<<<<< HEAD
         self.window = source[start:goal].T
+=======
+        window = source[start:goal].T
+>>>>>>> origin/master
         
         for i in range(1,len(source)/windowWidth):
             start = start+ int(windowWidth*overlap)
             goal = start+windowWidth
             adding = source[start:goal].T
+<<<<<<< HEAD
             self.window = np.dstack((self.window,adding))
         return self.window.T
     
@@ -66,3 +77,7 @@ class Window:
         window = self.Compile(windowWidth, overlap)
         d2window = self.d2window(wind=self.window)
         
+=======
+            window = np.dstack((window,adding))
+        return window.T
+>>>>>>> origin/master
